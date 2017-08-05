@@ -6,41 +6,31 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Parse initialization
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId("RrhJ75BLTkpVSH4XmmRddnkxQRwPZMIjHxXR3Oqv")
+                .clientKey("vcPaHwWH4enAH5uQgtAaMzi03ICY40HjX1GaHmZa")
+                .server("https://parseapi.back4app.com/").build()
+        );
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_base, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.read_poems:
-                //here method
-                return true;
-            case R.id.about:
-               // here method
-                return true;
-            case R.id.exit:
-                showExit();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
-    protected void showExit(){
-        System.exit(0);
-    }
 }
