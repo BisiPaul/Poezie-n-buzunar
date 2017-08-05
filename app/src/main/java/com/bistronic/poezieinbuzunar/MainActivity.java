@@ -1,5 +1,6 @@
 package com.bistronic.poezieinbuzunar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -17,12 +18,13 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Parse initialization
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("RrhJ75BLTkpVSH4XmmRddnkxQRwPZMIjHxXR3Oqv")
-                .clientKey("vcPaHwWH4enAH5uQgtAaMzi03ICY40HjX1GaHmZa")
-                .server("https://parseapi.back4app.com/").build()
-        );
+        //Avoid Parse invalid session token error
+        ParseUser.getCurrentUser().logOut();
+
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+
+
     }
 
     @Override
