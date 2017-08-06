@@ -12,6 +12,21 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+        completions.</string>
+
+    <!--Strings related to AboutActivity-->
+    <string name="about_activity_title">About activity</string>
+
+    <!--Strings related to ListActivity-->
+    <string name="list_activity_title">List activity</string>
+
+    <!--Strings related to MainActivity-->
+    <string name="main_activity_title">Main activity</string>
+
+
+    <!--Strings related to ReadPoemActivity-->
+    <string name="read_poem_activity_title">ReadPoem activity</string>
+
+
+
 </resources>

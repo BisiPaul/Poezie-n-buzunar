@@ -1,5 +1,6 @@
 package com.bistronic.poezieinbuzunar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,10 +28,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.read_poems:
-                //here method
+                Intent intent = new Intent(this, ListActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.about:
-                // here method
+                intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.exit:
                 showExit();
