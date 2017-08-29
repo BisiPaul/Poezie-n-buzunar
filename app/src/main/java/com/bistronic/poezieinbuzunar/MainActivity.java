@@ -1,8 +1,10 @@
 package com.bistronic.poezieinbuzunar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 
 import com.parse.ParseUser;
 
@@ -26,6 +28,14 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    public void showSignInActivity(View view){
+        Intent intent = new Intent(this, LogInActivity.class);
+        startActivity(intent);
+    }
 
+    public void showRegisterActivity(View view){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
 
 }
