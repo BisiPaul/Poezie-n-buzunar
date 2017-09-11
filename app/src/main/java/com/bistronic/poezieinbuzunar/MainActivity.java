@@ -17,8 +17,6 @@ public class MainActivity extends BaseActivity {
 
         //Avoid Parse invalid session token error
         ParseUser.getCurrentUser().logOut();
-
-
     }
 
     @Override

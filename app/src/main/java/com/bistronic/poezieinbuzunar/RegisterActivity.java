@@ -26,11 +26,20 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class RegisterActivity extends AppCompatActivity {
+    @Bind(R.id.usernameEditTextRegister)
     EditText usernameEditTextRegister;
+
+    @Bind(R.id.passwordEditTextRegister)
     EditText passwordEditTextRegister;
+
+    @Bind(R.id.confirmPasswordEditTextRegister)
     EditText confirmPasswordEditTextRegister;
 
+    @Bind(R.id.registerButton)
     Button registerButton;
 
     //TextView usernameTextViewRegister;
@@ -45,18 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        usernameEditTextRegister = (EditText) findViewById(R.id.usernameEditTextRegister);
-        passwordEditTextRegister = (EditText) findViewById(R.id.passwordEditTextRegister);
-        confirmPasswordEditTextRegister = (EditText) findViewById(R.id.confirmPasswordEditTextRegister);
-
-        registerButton = (Button) findViewById(R.id.registerButton);
-
-        //usernameTextViewRegister = (TextView) findViewById(R.id.usernameTextViewRegister);
-        //passwordTextViewRegister = (TextView) findViewById(R.id.passwordTextViewRegister);
-        //confirmPasswordTextViewRegister = (TextView) findViewById(R.id.confirmPasswordTextViewRegister);
+        ButterKnife.bind(this);
 
         progressDialog = new ProgressDialog(RegisterActivity.this);
-
 
         getKeyHash();
 
