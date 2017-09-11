@@ -1,9 +1,15 @@
-package com.bistronic.poezieinbuzunar;
+package com.bistronic.poezieinbuzunar.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+
+import com.bistronic.poezieinbuzunar.R;
+import com.parse.Parse;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseUser;
 
 public class SplashActivity extends Activity {
 
@@ -14,6 +20,7 @@ public class SplashActivity extends Activity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable(){
@@ -26,4 +33,7 @@ public class SplashActivity extends Activity {
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
+
+
+
 }

@@ -1,26 +1,23 @@
-package com.bistronic.poezieinbuzunar;
+package com.bistronic.poezieinbuzunar.activities;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bistronic.poezieinbuzunar.R;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
@@ -160,6 +157,11 @@ public class LogInActivity extends BaseActivity {
                 if (parseUser != null) {
                     progressDialog.dismiss();
                     getUserDetailFromParse();
+
+                    //populate the ReadPoemActivity with poems
+                    Intent listIntent = new Intent(LogInActivity.this, ListActivity.class);
+                    startActivity(listIntent);
+                    //LogInActivity.this.finish();
                 } else {
                     progressDialog.dismiss();
                     alertDisplayer("Login Fail", e.getMessage()+" Please re-try");

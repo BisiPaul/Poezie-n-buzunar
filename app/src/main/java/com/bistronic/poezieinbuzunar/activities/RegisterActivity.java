@@ -1,4 +1,4 @@
-package com.bistronic.poezieinbuzunar;
+package com.bistronic.poezieinbuzunar.activities;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -7,7 +7,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Looper;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -15,14 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.bistronic.poezieinbuzunar.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -130,7 +128,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-
     void saveNewUser(){
         ParseUser user = ParseUser.getCurrentUser();
         user.setUsername(usernameEditTextRegister.getText().toString());
@@ -142,7 +139,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
 
     void alertDisplayer(String title,String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this)
@@ -171,5 +167,4 @@ public class RegisterActivity extends AppCompatActivity {
         else
             return false;
     }
-
 }

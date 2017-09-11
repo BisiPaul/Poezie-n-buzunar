@@ -1,11 +1,13 @@
-package com.bistronic.poezieinbuzunar;
+package com.bistronic.poezieinbuzunar.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.bistronic.poezieinbuzunar.R;
 import com.parse.Parse;
+import com.parse.ParseUser;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -46,7 +48,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void showExit(){
         System.exit(0);
     }
-
-
 
 }
