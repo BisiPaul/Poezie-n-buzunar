@@ -12,12 +12,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".SplashActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,24 +25,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.BaseActivity" />
-        <activity android:name=".activities.LogInActivity"
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".LogInActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.RegisterActivity"
+        <activity android:name=".RegisterActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activities.ReadPoemActivity"
+            android:name=".ReadPoemActivity"
             android:label="@string/read_poem_activity_title"
-            android:parentActivityName=".activities.ListActivity" />
+            android:parentActivityName=".ListActivity" />
         <activity
-            android:name=".activities.AboutActivity"
+            android:name=".AboutActivity"
             android:label="@string/about_activity_title"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activities.ListActivity"
+            android:name=".ListActivity"
             android:label="@string/list_activity_title" />
 
-        <activity android:name=".activities.MainActivity"
+        <activity android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
     </application>
