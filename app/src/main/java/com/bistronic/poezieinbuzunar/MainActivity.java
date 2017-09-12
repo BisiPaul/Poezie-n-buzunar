@@ -1,10 +1,12 @@
 package com.bistronic.poezieinbuzunar;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.parse.ParseUser;
 
@@ -17,6 +19,11 @@ public class MainActivity extends BaseActivity {
 
         //Avoid Parse invalid session token error
         ParseUser.getCurrentUser().logOut();
+
+        TextView textView = (TextView) findViewById(R.id.textQuote);
+        final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/expresswayrg.ttf");
+
+        textView.setTypeface(font);
     }
 
     @Override
