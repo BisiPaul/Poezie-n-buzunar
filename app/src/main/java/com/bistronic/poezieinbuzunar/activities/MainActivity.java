@@ -1,11 +1,13 @@
 package com.bistronic.poezieinbuzunar.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.bistronic.poezieinbuzunar.R;
 import com.bistronic.poezieinbuzunar.activities.BaseActivity;
@@ -20,6 +22,11 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView textView = (TextView) findViewById(R.id.textQuote);
+        final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/expresswayrg.ttf");
+
+        textView.setTypeface(font);
 
         ParseUser user = ParseUser.getCurrentUser();
         // Determine whether the current user is an anonymous user
@@ -36,9 +43,6 @@ public class MainActivity extends BaseActivity {
                 MainActivity.this.finish();
             }
         }
-
-        //Avoid Parse invalid session token error
-        //ParseUser.getCurrentUser().logOut();
     }
 
     @Override
