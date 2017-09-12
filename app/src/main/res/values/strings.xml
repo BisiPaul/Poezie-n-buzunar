@@ -23,6 +23,11 @@
     <!--Strings related to MainActivity-->
     <string name="main_activity_title">Main activity</string>
 
+    <!-- Strings related to LogInActivity -->
+    <string name="forgot_password_dialog_title">Reset Password</string>
+    <string name="forgot_password_dialog_username_hint">Username</string>
+    <string name="forgot_password_dialog_password_hint">Password</string>
+    <string name="forgot_password_dialog_confirm_password_hint">Confirm Password</string>
 
     <!--Strings related to ReadPoemActivity-->
     <string name="read_poem_activity_title">ReadPoem activity</string>
