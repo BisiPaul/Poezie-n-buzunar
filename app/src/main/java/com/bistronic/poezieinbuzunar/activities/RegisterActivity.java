@@ -3,6 +3,7 @@ package com.bistronic.poezieinbuzunar.activities;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -26,6 +27,7 @@ import java.security.NoSuchAlgorithmException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity {
     @Bind(R.id.usernameEditTextRegister)
@@ -39,10 +41,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Bind(R.id.registerButton)
     Button registerButton;
-
-    //TextView usernameTextViewRegister;
-    //TextView passwordTextViewRegister;
-    //TextView confirmPasswordTextViewRegister;
 
     ProgressDialog progressDialog;
 
@@ -58,37 +56,24 @@ public class RegisterActivity extends AppCompatActivity {
 
         getKeyHash();
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressDialog.setMessage("Please Wait");
-                progressDialog.setTitle("Registering");
-                progressDialog.show();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            parseRegister();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-            }
-        });
 
     }
 
+    @OnClick(R.id.registerButton)
     void parseRegister() {
         ParseUser user = new ParseUser();
         user.setUsername(usernameEditTextRegister.getText().toString());
-        Looper.prepare();
 
         String password = passwordEditTextRegister.getText().toString();
         String confirmedPassword = confirmPasswordEditTextRegister.getText().toString();
 
-
-        if( checkPasswordMatching( password , confirmedPassword ) && checkPasswordLength( password )) {
+        if( !checkPasswordMatching( password, confirmedPassword ) ) {
+            alertDisplayer("Register Fail" ,"The passwords do not match.");
+            progressDialog.dismiss();
+        } else if( !checkPasswordLength( password ) ) {
+            alertDisplayer("Register Fail" ,"The password must have at least 3 characters.");
+            progressDialog.dismiss();
+        } else {
             user.setPassword(passwordEditTextRegister.getText().toString());
             user.signUpInBackground(new SignUpCallback() {
                 @Override
@@ -103,15 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
             });
-        } else {
-            alertDisplayer("Register failed" ,"The passwords do not match.");
-            Log.d("test","innnnnnnnnnnnnnnnnnnnnnnnnnnn");
-            progressDialog.dismiss();
-
         }
     }
-
-
 
     private void getKeyHash() {
         try {
@@ -135,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                alertDisplayer("Register succesful!", "Welcome, " + usernameEditTextRegister.getText().toString() + "!");
+                alertDisplayerSucces("Register succesful!", "Welcome, " + usernameEditTextRegister.getText().toString() + "!");
             }
         });
     }
@@ -148,6 +126,23 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
+    }
+
+    void alertDisplayerSucces(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent listIntent = new Intent(RegisterActivity.this, ListActivity.class);
+                        startActivity(listIntent);
                     }
                 });
         AlertDialog ok = builder.create();
