@@ -16,6 +16,25 @@
 
     <!--Strings related to AboutActivity-->
     <string name="about_activity_title">About activity</string>
+    <string name="project_description">\t Ce-ar fi dacă ne-am începe fiecare zi cu o poezie? Nu vă temeți, nu trebuie să
+pricepeți sau să vă pricepeți! Trebuie doar să încercați! Nu citiți, intrați, spune
+Dan Iancu în Cum să citești poezie,  lucrurile se vor așeza simplu în imaginația
+voastră și veți fi fericiți de descoperire. Desigur, cu condiția ca poezia să fie
+foarte bună măcar, și își amintește Un alt prieten de-al meu, căruia îi dăruisem
+o carte de-a mea, mi-a spus că nu pricepe nimic. „De ce ar trebui să pricepi
+ceva?” l-am întrebat. Omul s-a uitat mirat la mine. ”Uite cum faci. Citești și-ți
+închipui că lucrurile alea sunt aevea.” Ne-am întîlnit peste un timp. „Ai avut
+dreptate!” a fost primul lucru pe care mi l-a spus. Fără povara idioată a datoriei
+de a „înțelege”, a putut citi cartea fără probleme. Mi-a spus și care imagini
+(imagini, nu poezii), i-au plăcut cel mai mult. Am trăit sentimentul că am salvat
+pe cineva de la înec.
+Ideea proiectului nostru aparţine oamenilor extraordinari si extraordinar de
+deschisi spre dialogul care depaseste granitele si conformismul de la Interart
+Triade si Levure Literaire. Parteneri la fel de activi şi vizibili ni s-au alaturat
+pentru implementarea proiectului: Editura Universitaţii de Vest, Librăria La Doua
+Bufniţe şi Klak Verlag Berlin. Verba Mananet este un proiect finanțat de AFCN
+Administrația Fondului Cultural Național.
+</string>
 
     <!--Strings related to ListActivity-->
     <string name="list_activity_title">List activity</string>
