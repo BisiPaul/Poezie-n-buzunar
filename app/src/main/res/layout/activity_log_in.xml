@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Username"
-            android:textColor="@color/textSecondary"
             android:id="@+id/usernameEditTextLogIn" />
 
     </LinearLayout>
@@ -46,7 +45,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="@color/textSecondary"
             android:ems="10"
             android:hint="Password"
             android:id="@+id/passwordEditTextLogIn" />
@@ -62,13 +60,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:textColor="@color/textPrimary"
+            android:background="@drawable/roundedbutton"
             android:id="@+id/loginButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot password?"
-            android:id="@+id/forgotPasswordButton" />
+            android:textColor="@color/textPrimary"
+            android:background="@drawable/roundedbutton"
+            android:id="@+id/forgotPasswordButton"
+            android:layout_marginLeft="5dp" />
     </LinearLayout>
 
 </LinearLayout>

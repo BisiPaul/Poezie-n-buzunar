@@ -26,7 +26,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Username"
-                android:textColor="@color/textSecondary"
                 android:id="@+id/usernameEditTextRegister" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -48,7 +47,6 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:hint="Password"
-                android:textColor="@color/textSecondary"
                 android:id="@+id/passwordEditTextRegister" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -70,7 +68,6 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:hint="Confirm Password"
-                android:textColor="@color/textSecondary"
                 android:id="@+id/confirmPasswordEditTextRegister" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -84,6 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
+            android:textColor="@color/textPrimary"
+            android:background="@drawable/roundedbutton"
             android:id="@+id/registerButton" />
     </LinearLayout>
 
