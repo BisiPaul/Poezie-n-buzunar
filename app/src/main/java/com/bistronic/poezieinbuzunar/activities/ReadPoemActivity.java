@@ -174,7 +174,7 @@ public class ReadPoemActivity extends AppCompatActivity {
 
                 return true;
             case android.R.id.home:
-                finish(); //closing the activity , the remeining one being the listActivity
+                finish(); //closing the activity , the remaining one being the listActivity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

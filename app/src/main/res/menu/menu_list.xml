@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/about"
-        android:title="Despre aplicatie" />
-    <item android:id="@+id/menu_base_logout"
-        android:title="Log Out" />
+    <item
+        android:id="@+id/about"
+        android:title="@string/about" />
+    <item
+        android:id="@+id/menu_base_logout"
+        android:title="@string/log_out" />
 </menu>

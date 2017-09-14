@@ -15,7 +15,7 @@
         completions.</string>
 
     <!--Strings related to AboutActivity-->
-    <string name="about_activity_title">About activity</string>
+    <string name="about_activity_title">About</string>
     <string name="project_description">\t<i>Ce-ar fi dacă ne-am începe fiecare zi cu o poezie?</i>\n\n\tNu vă temeți, nu trebuie să
 pricepeți sau să vă pricepeți! Trebuie doar să încercați! Nu citiți, intrați, spune
 Dan Iancu în Cum să citești poezie,  lucrurile se vor așeza simplu în imaginația
@@ -40,6 +40,9 @@ Administrația Fondului Cultural Național</b>.
 
     <!--Strings related to MainActivity-->
     <string name="main_activity_title">Main activity</string>
+    <string name="quote">&quot; Dacă pictura e poezie pe care o vedem, poezia este pictura pe care o simțim. &quot;\n ― Leonardo da Vinci</string>
+    <string name="register">Register now</string>
+    <string name="sign_in">Sign in</string>
 
     <!-- Strings related to LogInActivity -->
     <string name="forgot_password_dialog_title">Reset Password</string>
@@ -47,9 +50,19 @@ Administrația Fondului Cultural Național</b>.
     <string name="forgot_password_dialog_password_hint">Password</string>
     <string name="forgot_password_dialog_confirm_password_hint">Confirm Password</string>
     <string name="welcome_message"><b>Welcome!</b></string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_pass">Forgot password</string>
 
     <!--Strings related to ReadPoemActivity-->
     <string name="read_poem_activity_title">ReadPoem activity</string>
+
+    <!--Strings related to menu items-->
+    <string name="read_poems">Read poems</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="log_out">Log out</string>
 
 
 </resources>
