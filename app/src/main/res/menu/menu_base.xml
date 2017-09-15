@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/read_poems"
-        android:title="Citeste poezii" />
+        android:title="@string/read_poems" />
     <item android:id="@+id/about"
-        android:title="Despre aplicatie" />
+        android:title="@string/about" />
     <item android:id="@+id/exit"
-        android:title="Iesire" />
+        android:title="@string/exit" />
     <item android:id="@+id/menu_base_logout"
-        android:title="Log Out" />
+        android:title="@string/log_out" />
 </menu>
