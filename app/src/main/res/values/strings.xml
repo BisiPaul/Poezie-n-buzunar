@@ -37,6 +37,7 @@ Administrația Fondului Cultural Național</b>.
 
     <!--Strings related to ListActivity-->
     <string name="list_activity_title">List activity</string>
+    <string name="poem_title">Titlul poeziei</string>
 
     <!--Strings related to MainActivity-->
     <string name="main_activity_title">Main activity</string>
