@@ -21,9 +21,6 @@ public class ReadPoemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_poem);
 
-        //for the back button
-      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         String text = this.getIntent().getExtras().getString("text");
 
          mTextView = (TextView) findViewById(R.id.textViewPoem);
@@ -33,10 +30,13 @@ public class ReadPoemActivity extends AppCompatActivity {
         setToolbar();
     }
 
+
     public void setToolbar(){
         TextView toolbar_title;
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         toolbar_title = (TextView)findViewById(R.id.toolbar_title);
         toolbar_title.setText(getResources().getString(R.string.read_poem_activity_title));
