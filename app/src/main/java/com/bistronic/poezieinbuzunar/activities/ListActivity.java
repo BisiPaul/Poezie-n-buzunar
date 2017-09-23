@@ -4,15 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bistronic.poezieinbuzunar.R;
 import com.parse.ParseUser;
+
 import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
@@ -83,6 +86,15 @@ public class ListActivity extends AppCompatActivity {
             "Am uitat. Mi-am reamintit. Am uitat.\n" +
             "Nu vreau să te mai ratez. Eşti gloria lumii.\n" +
             "Acum eşti aici. Vino!\n");
+
+    private Poem poem3= new Poem("1","2","");
+    private Poem poem4= new Poem("1","2","");
+    private Poem poem5= new Poem("1","2","");
+    private Poem poem6= new Poem("1","2","");
+    private Poem poem7= new Poem("1","2","");
+    private Poem poem8= new Poem("1","2","");
+    private Poem poem9= new Poem("1","2","");
+    private Poem poem10= new Poem("eu","2","");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -94,6 +106,14 @@ public class ListActivity extends AppCompatActivity {
       // final ArrayList<Poem> poemList = Poem.getPoemsFromFile("poems.json", this);
         poemList.add(poem1);
         poemList.add(poem2);
+        poemList.add(poem3);
+        poemList.add(poem4);
+        poemList.add(poem5);
+        poemList.add(poem6);
+        poemList.add(poem7);
+        poemList.add(poem8);
+        poemList.add(poem9);
+        poemList.add(poem10);
 
         PoemAdapter adapter = new PoemAdapter(this, poemList);
         mListView.setAdapter(adapter);
@@ -114,8 +134,18 @@ public class ListActivity extends AppCompatActivity {
             }
 
         });
+
+        setToolbar();
     }
 
+    public void setToolbar(){
+        TextView toolbar_title;
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        toolbar_title = (TextView)findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getResources().getString(R.string.list_activity_title));
+    }
     public void displayPoemOnScreen(View v) {
         Intent intent = new Intent(this, ReadPoemActivity.class);
         startActivity(intent);

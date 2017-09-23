@@ -39,9 +39,10 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="3"
-            tools:text="Subtitle"
-            />
+            tools:text="Subtitle" />
     </RelativeLayout>
+
+
 
 
 

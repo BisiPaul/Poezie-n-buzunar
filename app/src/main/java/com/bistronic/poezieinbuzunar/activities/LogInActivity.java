@@ -9,12 +9,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bistronic.poezieinbuzunar.R;
@@ -116,7 +118,15 @@ public class LogInActivity extends BaseActivity {
 
         getKeyHash();
 
+        setToolbar();
+    }
+    public void setToolbar(){
+        TextView toolbar_title;
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
+        toolbar_title = (TextView)findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getResources().getString(R.string.title_activity_login));
     }
 
     @OnClick(R.id.loginButton)

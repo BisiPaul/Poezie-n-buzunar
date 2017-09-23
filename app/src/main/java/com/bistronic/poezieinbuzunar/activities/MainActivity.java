@@ -3,16 +3,13 @@ package com.bistronic.poezieinbuzunar.activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.bistronic.poezieinbuzunar.R;
-import com.bistronic.poezieinbuzunar.activities.BaseActivity;
-import com.bistronic.poezieinbuzunar.activities.LogInActivity;
-import com.bistronic.poezieinbuzunar.activities.RegisterActivity;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
 
@@ -43,6 +40,16 @@ public class MainActivity extends BaseActivity {
                 MainActivity.this.finish();
             }
         }
+        setToolbar();
+    }
+
+    public void setToolbar(){
+        TextView toolbar_title;
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        toolbar_title = (TextView)findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getResources().getString(R.string.app_name));
     }
 
     @Override

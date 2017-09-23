@@ -1,13 +1,13 @@
 package com.bistronic.poezieinbuzunar.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.bistronic.poezieinbuzunar.R;
 import com.parse.Parse;
-import com.parse.ParseUser;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -23,8 +23,14 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .server("https://parseapi.back4app.com/").build()
         );
 
+        setToolbar();
     }
+    public void setToolbar(){
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
