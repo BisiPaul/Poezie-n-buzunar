@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/poem_title"
-            android:onClick="displayPoemOnScreen"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             tools:text="Title"/>

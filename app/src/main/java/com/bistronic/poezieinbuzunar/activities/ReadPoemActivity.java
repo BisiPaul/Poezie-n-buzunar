@@ -1,5 +1,6 @@
 package com.bistronic.poezieinbuzunar.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +18,20 @@ public class ReadPoemActivity extends AppCompatActivity {
     private  int clicksFavorite=0;
     private TextView mTextView;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read_poem);
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        this.setIntent(intent);
+    }
 
-        String text = this.getIntent().getExtras().getString("text");
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(this.getIntent().getExtras());
+        setContentView(R.layout.activity_read_poem);
+        String text = "Try again";
+
+        if( this.getIntent().getExtras() != null) {
+            text = this.getIntent().getStringExtra("text");
+        }
 
          mTextView = (TextView) findViewById(R.id.textViewPoem);
          mTextView.setMovementMethod(new ScrollingMovementMethod());
@@ -73,5 +83,4 @@ public class ReadPoemActivity extends AppCompatActivity {
         finish();
         return true;
     }
-
 }

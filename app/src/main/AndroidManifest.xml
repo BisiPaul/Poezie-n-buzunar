@@ -45,7 +45,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ListActivity"
-            android:label="@string/none" />
+            android:label="@string/none"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait"

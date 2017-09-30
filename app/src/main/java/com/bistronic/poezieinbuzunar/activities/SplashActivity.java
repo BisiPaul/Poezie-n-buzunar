@@ -4,12 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import com.bistronic.poezieinbuzunar.R;
 import com.parse.Parse;
-import com.parse.ParseAnonymousUtils;
-import com.parse.ParseUser;
 
 public class SplashActivity extends Activity {
 
@@ -22,6 +19,14 @@ public class SplashActivity extends Activity {
         super.onCreate(icicle);
 
         setContentView(R.layout.activity_splash);
+
+//        Parse.enableLocalDatastore(getApplicationContext());
+        //Parse initialization
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId("RrhJ75BLTkpVSH4XmmRddnkxQRwPZMIjHxXR3Oqv")
+                .clientKey("vcPaHwWH4enAH5uQgtAaMzi03ICY40HjX1GaHmZa")
+                .server("https://parseapi.back4app.com/").build()
+        );
 
         new Handler().postDelayed(new Runnable(){
             @Override
