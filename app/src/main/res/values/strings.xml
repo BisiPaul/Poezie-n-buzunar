@@ -37,7 +37,7 @@ Administrația Fondului Cultural Național</b>.
 </string>
 
     <!--Strings related to ListActivity-->
-    <string name="list_activity_title">Verba Manent - poezii</string>
+    <string name="project_title">Verba Manent</string>
     <string name="poem_title">Titlul poeziei</string>
 
     <!--Strings related to MainActivity-->
@@ -45,6 +45,10 @@ Administrația Fondului Cultural Național</b>.
     <string name="quote">&quot; Dacă pictura e poezie pe care o vedem, poezia este pictura pe care o simțim. &quot;\n ― Leonardo da Vinci</string>
     <string name="register">Register now</string>
     <string name="sign_in">Sign in</string>
+    <string name="try_again">Try again </string>
+    <string name="no_connection">No internet connection. Please check your internet settings.</string>
+    <string name="oops"><b>Ooops!</b> </string>
+
 
     <!-- Strings related to LogInActivity -->
     <string name="forgot_password_dialog_title">Reset Password</string>

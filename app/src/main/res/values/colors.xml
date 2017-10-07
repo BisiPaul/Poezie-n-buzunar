@@ -5,5 +5,6 @@
     <color name="colorAccent">#ff4081</color>
     <color name="textPrimary">#FFFFFF</color>
     <color name="textSecondary">#000000</color>
+    <color name="textSilver">#c0c0c0</color>>
 
 </resources>

@@ -1,7 +1,10 @@
 package com.bistronic.poezieinbuzunar.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -50,8 +53,20 @@ public class MainActivity extends BaseActivity {
 
         toolbar_title = (TextView)findViewById(R.id.toolbar_title);
         toolbar_title.setText(getResources().getString(R.string.app_name));
+
+        if(!isNetworkAvailable()){
+            setContentView(R.layout.no_internet);
+        }
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -67,6 +82,16 @@ public class MainActivity extends BaseActivity {
     public void showRegisterActivity(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    public  void refreshActivity(View v){
+        if(isNetworkAvailable()){
+            findViewById(R.id.no_internet).setVisibility(View.GONE);
+            startActivity(getIntent());
+            this.finish();
+
+        }
+
     }
 
 }

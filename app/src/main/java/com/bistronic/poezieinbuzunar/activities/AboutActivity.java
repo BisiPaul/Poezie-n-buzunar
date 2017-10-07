@@ -20,8 +20,17 @@ public class AboutActivity extends AppCompatActivity {
         TextView toolbar_title;
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         toolbar_title = (TextView)findViewById(R.id.toolbar_title);
         toolbar_title.setText(getResources().getString(R.string.about_activity_title));
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }

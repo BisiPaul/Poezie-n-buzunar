@@ -3,6 +3,8 @@ package com.bistronic.poezieinbuzunar.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,39 +43,53 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         setToolbar();
 
-        final Context context = this;
+        if(!isNetworkAvailable()){
+            setContentView(R.layout.no_internet);
 
-        ProgressDialog progressDialog = new ProgressDialog(ListActivity.this);
-        progressDialog.setMessage("We are writing the poems...");
+        }
+        else {
+            final Context context = this;
 
-        mListView = (ListView) findViewById(R.id.listPoemsView);
+            ProgressDialog progressDialog = new ProgressDialog(ListActivity.this);
+            progressDialog.setMessage("We are writing the poems...");
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            mListView = (ListView) findViewById(R.id.listPoemsView);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Poem selectedPoem = poemList.get(position);
-                Intent detailIntent = new Intent(context, ReadPoemActivity.class);
-                detailIntent.putExtra("title", selectedPoem.title);
-                detailIntent.putExtra("author", selectedPoem.author);
-                detailIntent.putExtra("text", selectedPoem.text);
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                detailIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Poem selectedPoem = poemList.get(position);
+                    Intent detailIntent = new Intent(context, ReadPoemActivity.class);
+                    detailIntent.putExtra("title", selectedPoem.title);
+                    detailIntent.putExtra("author", selectedPoem.author);
+                    detailIntent.putExtra("text", selectedPoem.text);
 
-                Bundle extras = new Bundle();
-                extras.putString("title", selectedPoem.title);
-                extras.putString("author", selectedPoem.author);
-                extras.putString("text", selectedPoem.text);
+                    detailIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-                detailIntent.putExtras(extras);
-                startActivity(detailIntent);
-            }
+                    Bundle extras = new Bundle();
+                    extras.putString("title", selectedPoem.title);
+                    extras.putString("author", selectedPoem.author);
+                    extras.putString("text", selectedPoem.text);
 
-        });
+                    detailIntent.putExtras(extras);
+                    startActivity(detailIntent);
+                }
 
-        new FetchPoems(progressDialog).execute();
+            });
+
+            new FetchPoems(progressDialog).execute();
+        }
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -84,7 +101,8 @@ public class ListActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         toolbar_title = (TextView)findViewById(R.id.toolbar_title);
-        toolbar_title.setText(getResources().getString(R.string.list_activity_title));
+        toolbar_title.setText(getResources().getString(R.string.project_title));
+
     }
     public void displayPoemOnScreen(View v) {
         Intent intent = new Intent(this, ReadPoemActivity.class);
@@ -170,6 +188,16 @@ public class ListActivity extends AppCompatActivity {
         public ArrayList<Poem> getPoemList(){
             return poemListAux;
         }
+    }
+
+    public  void refreshActivity(View v){
+        if(isNetworkAvailable()){
+            findViewById(R.id.no_internet).setVisibility(View.GONE);
+            startActivity(getIntent());
+            this.finish();
+
+        }
+
     }
 
 }

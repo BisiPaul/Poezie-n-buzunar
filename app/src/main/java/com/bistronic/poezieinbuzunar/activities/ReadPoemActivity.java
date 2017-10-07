@@ -15,7 +15,7 @@ import com.bistronic.poezieinbuzunar.R;
  * Created by Larisa on 05.08.2017.
  */
 public class ReadPoemActivity extends AppCompatActivity {
-    private  int clicksFavorite=0;
+    private  int clicksFavorite = 0;
     private TextView mTextView;
 
     @Override
@@ -27,13 +27,24 @@ public class ReadPoemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(this.getIntent().getExtras());
         setContentView(R.layout.activity_read_poem);
-        String text = "Try again";
+        String text = "Try again",title="",author="";
 
         if( this.getIntent().getExtras() != null) {
+            title = this.getIntent().getStringExtra("title");
+            author = this.getIntent().getStringExtra("author");
             text = this.getIntent().getStringExtra("text");
+
         }
 
-         mTextView = (TextView) findViewById(R.id.textViewPoem);
+         mTextView = (TextView) findViewById(R.id.titlePoem);
+         mTextView.setMovementMethod(new ScrollingMovementMethod());
+         mTextView.setText(title);
+
+        mTextView = (TextView) findViewById(R.id.authorPoem);
+        mTextView.setMovementMethod(new ScrollingMovementMethod());
+        mTextView.setText(author);
+
+         mTextView = (TextView) findViewById(R.id.textPoem);
          mTextView.setMovementMethod(new ScrollingMovementMethod());
          mTextView.setText(text);
 
@@ -49,7 +60,8 @@ public class ReadPoemActivity extends AppCompatActivity {
 
 
         toolbar_title = (TextView)findViewById(R.id.toolbar_title);
-        toolbar_title.setText(getResources().getString(R.string.read_poem_activity_title));
+        toolbar_title.setText(getResources().getString(R.string.project_title));
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,14 +74,14 @@ public class ReadPoemActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.unfavourite:
+  /*          case R.id.unfavourite:
                 clicksFavorite++;
                 if(clicksFavorite%2==1)
                     item.setIcon(R.drawable.icon_favorite);
                 else
                     item.setIcon(R.drawable.icon_unfavorite);
 
-                return true;
+                return true;*/
             case android.R.id.home:
                 finish(); //closing the activity , the remaining one being the listActivity
                 return true;
