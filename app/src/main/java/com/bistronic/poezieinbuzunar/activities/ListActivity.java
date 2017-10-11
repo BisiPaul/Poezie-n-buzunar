@@ -91,13 +91,25 @@ public class ListActivity extends AppCompatActivity implements CompoundButton.On
 	@Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
-            progressDialog = new ProgressDialog(ListActivity.this);
-            progressDialog.setMessage("We are writing the poems...");
-            new FetchPoems(progressDialog, "DE").execute();
+            if(!isNetworkAvailable()){
+                setContentView(R.layout.no_internet);
+
+            }
+            else {
+                progressDialog = new ProgressDialog(ListActivity.this);
+                progressDialog.setMessage("We are writing the poems...");
+                new FetchPoems(progressDialog, "DE").execute();
+            }
         } else {
-            progressDialog = new ProgressDialog(ListActivity.this);
-            progressDialog.setMessage("We are writing the poems...");
-            new FetchPoems(progressDialog, "RO").execute();
+            if(!isNetworkAvailable()){
+                setContentView(R.layout.no_internet);
+
+            }
+            else {
+                progressDialog = new ProgressDialog(ListActivity.this);
+                progressDialog.setMessage("We are writing the poems...");
+                new FetchPoems(progressDialog, "RO").execute();
+            }
         }
     }
 
