@@ -8,12 +8,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,16 +24,17 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
     private ListView mListView;
-
+    private SwitchCompat switchLanguage;
     private String title;
     private String author;
     private String text;
+
+    private ProgressDialog progressDialog;
 
     ArrayList<Poem> poemList = new ArrayList<>();
 
@@ -41,6 +44,9 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        switchLanguage = (SwitchCompat) findViewById(R.id.SwitchLanguage);
+        switchLanguage.setOnCheckedChangeListener(this);
+
         setToolbar();
 
         if(!isNetworkAvailable()){
@@ -78,7 +84,20 @@ public class ListActivity extends AppCompatActivity {
 
             });
 
-            new FetchPoems(progressDialog).execute();
+            new FetchPoems(progressDialog, "RO").execute();
+        }
+    }
+	
+	@Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            progressDialog = new ProgressDialog(ListActivity.this);
+            progressDialog.setMessage("We are writing the poems...");
+            new FetchPoems(progressDialog, "DE").execute();
+        } else {
+            progressDialog = new ProgressDialog(ListActivity.this);
+            progressDialog.setMessage("We are writing the poems...");
+            new FetchPoems(progressDialog, "RO").execute();
         }
     }
 
@@ -90,6 +109,7 @@ public class ListActivity extends AppCompatActivity {
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+	
     @Override
     protected void onResume() {
         super.onResume();
@@ -136,6 +156,7 @@ public class ListActivity extends AppCompatActivity {
         ParseUser.getCurrentUser().logOut();
         Intent mainIntent = new Intent(ListActivity.this, MainActivity.class);
         startActivity(mainIntent);
+        this.finish();
     }
 
     @Override
@@ -146,9 +167,11 @@ public class ListActivity extends AppCompatActivity {
     class FetchPoems extends AsyncTask<Void, Void, ArrayList<Poem>> {
         ProgressDialog mProgressDialog;
         protected ArrayList<Poem> poemListAux = new ArrayList<>();
+        private String language;
 
-        public FetchPoems(ProgressDialog progressDialog){
+        public FetchPoems(ProgressDialog progressDialog, String language){
             this.mProgressDialog = progressDialog;
+            this.language = language;
         }
 
         public void onPreExecute() {
@@ -158,7 +181,11 @@ public class ListActivity extends AppCompatActivity {
         public ArrayList<Poem> doInBackground(Void... x) {
             ParseObject Poems = new ParseObject("Poems");
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Poems");
-
+            if(this.language.equals("RO")) {
+                query.whereEqualTo("language", "RO");
+            } else {
+                query.whereEqualTo("language", "DE");
+            }
             try{
                 List<ParseObject> parseList = query.find();
 

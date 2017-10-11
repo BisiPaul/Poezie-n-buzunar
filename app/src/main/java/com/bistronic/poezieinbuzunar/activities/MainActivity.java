@@ -89,8 +89,10 @@ public class MainActivity extends BaseActivity {
             findViewById(R.id.no_internet).setVisibility(View.GONE);
             startActivity(getIntent());
             this.finish();
-
         }
+    }
+
+    public void onBackPressed(){
 
     }
 

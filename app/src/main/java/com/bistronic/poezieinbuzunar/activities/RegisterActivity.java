@@ -33,6 +33,9 @@ public class RegisterActivity extends AppCompatActivity {
     @Bind(R.id.usernameEditTextRegister)
     EditText usernameEditTextRegister;
 
+    @Bind(R.id.emailEditTextRegister)
+    EditText emailEditTextRegister;
+
     @Bind(R.id.passwordEditTextRegister)
     EditText passwordEditTextRegister;
 
@@ -72,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
     void parseRegister() {
         ParseUser user = new ParseUser();
         user.setUsername(usernameEditTextRegister.getText().toString());
-
+        user.setEmail(emailEditTextRegister.getText().toString());
         String password = passwordEditTextRegister.getText().toString();
         String confirmedPassword = confirmPasswordEditTextRegister.getText().toString();
 

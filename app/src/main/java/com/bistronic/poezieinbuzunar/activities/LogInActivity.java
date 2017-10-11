@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.LoginFilter;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -43,9 +45,7 @@ public class LogInActivity extends BaseActivity {
     @Bind(R.id.passwordEditTextLogIn)
     EditText passwordEditText;
 
-    EditText forgotPasswordUsernameEditText;
-    EditText forgotPasswordPasswordEditText1;
-    EditText forgotPasswordConfirmPasswordEditText;
+    EditText forgotPasswordEmailEditText;
 
     @Bind(R.id.loginButton)
     Button loginButton;
@@ -77,9 +77,7 @@ public class LogInActivity extends BaseActivity {
         //Forgot password dialog view is inflated
         LayoutInflater inflater = (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View forgotPasswordDialogView = inflater.inflate(R.layout.dialog_forgot_password, null);
-        forgotPasswordUsernameEditText = (EditText) forgotPasswordDialogView.findViewById(R.id.forgotPasswordUsernameEditText);
-        forgotPasswordPasswordEditText1 = (EditText) forgotPasswordDialogView.findViewById(R.id.forgotPasswordPasswordEditText);
-        forgotPasswordConfirmPasswordEditText = (EditText) forgotPasswordDialogView.findViewById(R.id.forgotPasswordConfirmEditText);
+        forgotPasswordEmailEditText = (EditText) forgotPasswordDialogView.findViewById(R.id.forgotPasswordUsernameEditText);
 
         // Create and inflate the Forget Password Dialog
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LogInActivity.this);
@@ -93,17 +91,9 @@ public class LogInActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 try {
                                     parseForgotPassword();
-                                    successfulPasswordResetFlag = true;
                                 } catch (Exception e) {
-                                    successfulPasswordResetFlag = false;
                                     e.printStackTrace();
                                 }
-
-                                if (successfulPasswordResetFlag == true) {
-                                    Toast.makeText(LogInActivity.this, "Password successfully reset", Toast.LENGTH_SHORT).show();
-                                    dialog.cancel();
-                                } else
-                                    Toast.makeText(LogInActivity.this, "Incorrect details, please try again", Toast.LENGTH_SHORT).show();
                             }
                         })
                 .setNegativeButton("Cancel",
@@ -149,7 +139,6 @@ public class LogInActivity extends BaseActivity {
     @OnClick(R.id.forgotPasswordButton)
     public void forgotPassword() {
 
-
         // Show the Alert Dialog
         alertDialog.show();
 
@@ -184,15 +173,23 @@ public class LogInActivity extends BaseActivity {
         //Looper.prepare();
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("username", forgotPasswordUsernameEditText.getText().toString());
+        query.whereEqualTo("email", forgotPasswordEmailEditText.getText().toString());
         query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> objects, ParseException e) {
+            public void done(final List<ParseUser> objects, ParseException e) {
                 if (e == null) {
-                    if( forgotPasswordPasswordEditText1.getText().toString().equals(forgotPasswordConfirmPasswordEditText.getText().toString()) ) {
-                        objects.get(0).setPassword(forgotPasswordPasswordEditText1.getText().toString());
-                        objects.get(0).saveInBackground();
-                    }
+                        ParseUser.requestPasswordResetInBackground( forgotPasswordEmailEditText.getText().toString(), new RequestPasswordResetCallback() {
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    Toast.makeText(LogInActivity.this, "An email for resetting the password has been sent", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(LogInActivity.this, "Incorrect user email", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        successfulPasswordResetFlag = true;
                 } else {
+                    successfulPasswordResetFlag = false;
                     e.printStackTrace();
                 }
             }
@@ -206,7 +203,9 @@ public class LogInActivity extends BaseActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        if(successfulPasswordResetFlag){
+                            dialog.cancel();
+                        }
                     }
                 });
         AlertDialog ok = builder.create();
@@ -230,23 +229,6 @@ public class LogInActivity extends BaseActivity {
 
     void getUserDetailFromParse(){
         ParseUser user = ParseUser.getCurrentUser();
-        alertDisplayer("Welcome", " " + usernameEditText.getText().toString());
+        this.finish();
     }
-
-    boolean checkPasswordLength(String password){
-        if(password.length() < 3)
-            return false;
-        else
-            return true;
-    }
-
-    boolean checkPasswordMatching(String pass, String confirm){
-        if(pass.equals(confirm))
-            return true;
-        else
-            return false;
-    }
-
-
-
 }

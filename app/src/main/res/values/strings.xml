@@ -52,9 +52,7 @@ Administrația Fondului Cultural Național</b>.
 
     <!-- Strings related to LogInActivity -->
     <string name="forgot_password_dialog_title">Reset Password</string>
-    <string name="forgot_password_dialog_username_hint">Username</string>
-    <string name="forgot_password_dialog_password_hint">Password</string>
-    <string name="forgot_password_dialog_confirm_password_hint">Confirm Password</string>
+    <string name="forgot_password_dialog_email_hint">E-mail</string>
     <string name="welcome_message"><b>Welcome!</b></string>
     <string name="username">Username</string>
     <string name="password">Password</string>
