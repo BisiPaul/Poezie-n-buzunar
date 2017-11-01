@@ -25,6 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
@@ -218,6 +219,7 @@ public class ListActivity extends AppCompatActivity implements CompoundButton.On
         @Override
         public void onPostExecute(ArrayList<Poem> poemListAux) {
             //super.onPostExecute(poemListAux);
+            Collections.sort(poemListAux);
             mProgressDialog.dismiss();
             poemList = poemListAux;
             adapter = new PoemAdapter(ListActivity.this, poemListAux);
