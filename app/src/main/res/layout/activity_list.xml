@@ -19,5 +19,4 @@
         android:paddingRight="12dp"
         android:scrollbars="none" />
 
-
 </LinearLayout>
